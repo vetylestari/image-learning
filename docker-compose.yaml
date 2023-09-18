@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./dev.Dockerfile
+    container_name: go-starter-template
+    env_file:
+      - .env
+    ports:
+      - 8080:${APP_PORT}
+    volumes:
+      - .:/app
+    command: CompileDaemon -polling -build="go build -buildvcs=false -o go-starter-template" -command="./go-starter-template"
